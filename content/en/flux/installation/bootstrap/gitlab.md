@@ -24,6 +24,40 @@ or to have admin rights of a GitLab group.
 For accessing the GitLab API, the bootstrap command requires a GitLab personal access token (PAT)
 with complete read/write access to the GitLab API.
 
+### Fine-grained personal access tokens
+
+GitLab supports fine-grained personal access tokens. The exact permissions needed depend on the
+operations performed during bootstrap and the authentication method selected.
+
+For an existing project, the following permissions are relevant to the repository and project operations
+performed by bootstrap:
+
+- **Projects → Project → Read** to read project information.
+- **Repository → Code → Download** to clone or pull repository contents.
+- **Repository → Code → Push** to push the Flux manifests to the repository.
+
+If you use `--deploy-token-auth`, Flux also creates a project deploy token. The PAT therefore needs
+the permissions required to create and manage project deploy tokens:
+
+- **System Access → Deploy Token → Create**
+- **System Access → Deploy Token → Read**
+- **System Access → Deploy Token → Delete**
+
+If you use SSH and GitLab deploy keys (`--token-auth=false`), the bootstrap process instead creates
+a project deploy key. Ensure the PAT has the permissions required by GitLab to manage deploy keys.
+Creating a new project can also require additional permissions compared with bootstrapping an existing
+project.
+
+The token's permissions do not override the access rights of the user who owns it. The user must still
+have sufficient project or group access, and the bootstrap command also requires cluster-admin rights
+on the target Kubernetes cluster.
+
+For the complete permission definitions, see GitLab's documentation on
+[fine-grained permissions for Git operations](https://docs.gitlab.com/auth/tokens/fine_grained_access_tokens_other/)
+and [fine-grained permissions for the REST API](https://docs.gitlab.com/auth/tokens/fine_grained_access_tokens_rest/).
+Because the required permissions can vary by bootstrap options and project state, verify the permissions
+for the operations you use if bootstrap returns an authorization error.
+
 The GitLab PAT can be exported as an environment variable:
 
 ```sh
@@ -121,7 +155,7 @@ To use an SSH key instead of a GitLab PAT, the command changes to `flux bootstra
 flux bootstrap git \
   --url=ssh://git@gitlab.com/<group>/<project> \
   --branch=<my-branch> \
-  --private-key-file=<path/to/ssh/private.key> \
+  --private-key-file=<path/to/private.key> \
   --password=<key-passphrase> \
   --path=clusters/my-cluster
 ```
