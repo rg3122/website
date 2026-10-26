@@ -10,7 +10,7 @@ weight: 144
 ### Does Flux have a UI / GUI?
 
 The Flux project does not provide a UI of its own,
-but there are a variety of UIs for Flux in the [Flux Ecosystem](/ecosystem/#flux-uis--guis).
+but there are a variety of UIs for Flux in the [Flux Ecosystem](../ecosystem/index.md#flux-uis--guis).
 
 {{< blocks/flux_ui_galleries >}}
 
@@ -23,7 +23,7 @@ For Flux the CLI and its controllers, we support the last three minor releases.
 Critical bug fixes, such as security fixes, may be back-ported to those three minor
 versions as patch releases, depending on severity and feasibility.
 
-For more details please see the Flux [release documentation](/flux/releases/).
+For more details please see the Flux [release documentation](releases/_index.md).
 
 ## Kustomize questions
 
@@ -577,16 +577,16 @@ spec:
 Flux v1 is a monolithic do-it-all operator; it has reached its EOL and has been archived.
 Flux v2 separates the functionalities into specialized controllers, collectively called the GitOps Toolkit.
 
-You can find a detailed comparison of Flux v1 and v2 features in the [migration FAQ](../migration/faq-migration/).
+You can find a detailed comparison of Flux v1 and v2 features in the [migration FAQ](migration/faq-migration.md).
 
 ### How can I migrate from v1 to v2?
 
 The Flux community has created guides and example repositories
 to help you migrate to Flux v2:
 
-- [Migrate from Flux v1](/flux/migration/flux-v1-migration/)
-- [Migrate from `.flux.yaml` and kustomize](/flux/migration/flux-v1-migration/#flux-with-kustomize)
-- [Migrate from Flux v1 automated container image updates](/flux/migration/flux-v1-automation-migration/)
+- [Migrate from Flux v1](migration/flux-v1-migration.md)
+- [Migrate from `.flux.yaml` and kustomize](migration/flux-v1-migration.md#flux-with-kustomize)
+- [Migrate from Flux v1 automated container image updates](migration/flux-v1-automation-migration.md)
 - [How to manage multi-tenant clusters with Flux v2](https://github.com/fluxcd/flux2-multi-tenancy)
-- [Migrate from Helm Operator to Flux v2](/flux/migration/helm-operator-migration/)
+- [Migrate from Helm Operator to Flux v2](migration/helm-operator-migration.md)
 - [How to structure your HelmReleases](https://github.com/fluxcd/flux2-kustomize-helm-example)
